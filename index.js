@@ -29,6 +29,8 @@ MongoClient.connect('mongodb://naztyBoi:testing123@ds121980.mlab.com:21980/armyg
   app.listen(process.env.PORT || 3000);
 });
 
+
+
 //homepage
 app.get('/', function(req, res) {
   db.collection("armies").find({}).toArray(function(err, results){
@@ -36,11 +38,41 @@ app.get('/', function(req, res) {
   });
 });
 
+
+
+//view army
+app.get('/armies/:name', function(req, res) {
+  db.collection("armies").findOne({name: req.params.name}, function(err, result) {
+    if (err) console.log(err);
+    res.render('army', {
+    	army: result, 
+    	
+    	//using math helper found at http://jsfiddle.net/mpetrovich/wMmHS/  and modified slightly for express
+    	helpers: {
+            math: function (lvalue, operator, rvalue, options) { 
+            	lvalue = parseFloat(lvalue);
+    			rvalue = parseFloat(rvalue);
+        
+    			return {
+       				"+": parseFloat(lvalue + rvalue).toFixed(0),
+        			"-": parseFloat(lvalue - rvalue).toFixed(0),
+        			"*": parseFloat(lvalue * rvalue).toFixed(0),
+        			"/": parseFloat(lvalue / rvalue).toFixed(0),
+        			"%": parseFloat(lvalue % rvalue).toFixed(0)
+    			}[operator]; },
+    		
+
+        }});
+  });
+});
+
+
+
+
 //add army
 app.get('/addarmy', function(req, res) {
   res.render('add_army');
 });
-
 
 
 app.post('/addarmy', function(req, res) {
@@ -60,6 +92,8 @@ app.post('/addarmy', function(req, res) {
     res.render('add_army', {message: 'Please enter a valid army', army: req.body});
   }
 });
+
+
 
 
 

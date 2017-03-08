@@ -1,0 +1,31 @@
+
+
+
+<p>You are viewing: </p> 
+<h1>{{army.name}}</h1>
+
+<br>
+
+<p>Country of origin: {{army.country}}</p>
+
+<p>Commander of this army: {{army.leader}}</p>
+
+<p>The size of this army: {{army.size}}</p>
+
+<br>
+<br>
+
+<h4> Breakdown of Forces:</h4>
+
+<p> Foot Soldiers: {{math army.size "/" 2}} </p>
+<p> Archers: {{math army.size "/" 3}} </p>
+<p> Cavalry: {{math army.size "/" 10}} </p>
+<p> Support:  {{math army.size "/" 15}} </p>
+
+
+<br>
+<br>
+<br>
+<br>
+
+<p><a href="/">Go back to army list.</a> </p>
