@@ -1,0 +1,16 @@
+<p style = "margin-bottom: 10vh; font-size: 30px; text-align:center;"><a href="/addarmy"> Add an army to the game. </a></p>
+<p style = "font-size:35px"> All armies that are currently in the fight: </p>
+<br>
+{{#each armies}}
+<div>
+  
+  
+
+  <p>{{name}} fights for {{country}}. It is an admirable force, with the fighting power of {{size}} men. This bunch is led by {{leader}}, a very notorious {{#if leadTitle}} and {{leadTitle}} {{/if}} general.</p>
+  <p><a href="/armies/{{name}}/edit">Edit this army.</a> <a href="/armies/{{name}}/delete">Delete this army.</a></p>
+  <br>
+
+
+
+</div>
+{{/each}}
